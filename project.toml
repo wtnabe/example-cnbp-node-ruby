@@ -1,0 +1,6 @@
+[[io.buildpacks]]
+exclude = [
+  "*~",
+ 	"node_modules",
+	"vendor"
+]

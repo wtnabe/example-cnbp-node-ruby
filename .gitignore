@@ -1,0 +1,6 @@
+*~
+*.bak
+
+/vendor
+/node_modules
+/tmp
