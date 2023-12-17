@@ -1,4 +1,4 @@
-## An example repos for Vite and Sinatra app with Cloud Native Buildpacks
+## An example repo for Vite and Sinatra app with Cloud Native Buildpacks
 
 ### Prerequisite
 
@@ -27,14 +27,32 @@ foreman start -f Procfile.dev
 
 ### Deploy
 
+Prepare the credentials for each platform so that they can be used in docker command.
+
 #### Heroku
 
+[Container Registry & Runtime \(Docker Deploys\) \| Heroku Dev Center](https://devcenter.heroku.com/articles/container-registry-and-runtime#getting-started)
+
 ```
-docker tag example-cnbp-node-ruby registry.heroku.com/<app>/web
-docker push registry.heroku.com/<app>/web
-heroku container:release web -a <app>
+$ heroku container:login
 ```
 
-TODO...
+```
+$ docker tag example-cnbp-node-ruby registry.heroku.com/<app>/web
+$ docker push registry.heroku.com/<app>/web
+$ heroku container:release web -a <app>
+```
 
-see [Container Registry & Runtime \(Docker Deploys\) \| Heroku Dev Center](https://devcenter.heroku.com/articles/container-registry-and-runtime)
+### Cloud Run
+
+[クイックスタート: Docker コンテナ イメージを Artifact Registry に保存する  \|  Artifact Registry のドキュメント  \|  Google Cloud](https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images?hl=ja)
+
+```
+$ gcloud auth configure-docker <location>-central1-docker.pkg.dev
+```
+
+```
+$ docker tag example-cnbp-node-ruby <location>-docker.pkg.dev/<project>/<repos>/<image>
+$ docker push <location>-docker.pkg.dev/<project>/<repos>/<image>
+$ gcloud run deploy <service> --image <location>-docker.pkg.dev/<project>/<repos>/<image>
+```
