@@ -1,5 +1,5 @@
 {
-	"license": "BSD-2-Clause",
+  "license": "BSD-2-Clause",
   "devDependencies": {
     "vite": "^5.0.0",
     "vite-plugin-ruby": "^5.0.0"
